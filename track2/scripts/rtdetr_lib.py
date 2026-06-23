@@ -11,14 +11,24 @@ NAMES = ["Rickshaw","Motorcycle","Tempu","Sedan Car","Pickup","Microbus","Mini B
 
 # ----------------------------------------------------------------- data
 def find_competition_src(default="data"):
-    """On Kaggle, auto-locate the competition input dir (the one with train/train.csv)."""
+    """Auto-locate the dir that CONTAINS train/train.csv (+ test/images), at any nesting
+    depth under /kaggle/input. Falls back to any train.csv if the test dir name differs."""
     if os.path.exists(f"{default}/train/train.csv"):
         return os.path.abspath(default)
-    for c in sorted(glob.glob("/kaggle/input/*")):
-        if os.path.exists(f"{c}/train/train.csv") and os.path.isdir(f"{c}/test/images"):
-            return c
-    raise FileNotFoundError("Could not find <SRC>/train/train.csv. Add the competition as "
-                            "a Kaggle input, or pass src= explicitly.")
+    cands = sorted(glob.glob("/kaggle/input/**/train/train.csv", recursive=True))
+    for csv in cands:                                  # .../<SRC>/train/train.csv
+        src = os.path.dirname(os.path.dirname(csv))
+        if os.path.isdir(f"{src}/test/images"):
+            print(f"[data] auto-detected SRC = {src}")
+            return src
+    if cands:                                          # train.csv found but no test/images sibling
+        src = os.path.dirname(os.path.dirname(cands[0]))
+        print(f"[data] WARNING: using SRC = {src} but no {src}/test/images — check test path")
+        return src
+    found = glob.glob("/kaggle/input/**/*.csv", recursive=True)[:8]
+    raise FileNotFoundError(
+        "Could not find train/train.csv under /kaggle/input. Add the competition as a Kaggle "
+        f"input, or set SRC manually. CSVs seen: {found or 'none'}")
 
 def build_dataset(src, ds_out, k=3):
     """CSV -> YOLO labels + camera-stratified frame-phase K-fold. Idempotent. CPU only."""

@@ -10,7 +10,9 @@
       "Bash(mkdir -p /home/shimul/.claude/projects/-home-shimul-Documents-Hackathon-DUET-AI-Hackathon-duetAIHackathon-my-sub/memory/ && echo created)",
       "Bash(python3 -m py_compile track2/scripts/rtdetr_lib.py track2/scripts/submission_utils.py track2/scripts/ensemble_tracks.py track2/scripts/build_dataset.py track2/notebooks/rtdetr_train.py track2/notebooks/rtdetr_infer.py)",
       "Bash(python3 track2/notebooks/rtdetr_train.py --help)",
-      "Bash(python3 track2/notebooks/rtdetr_infer.py --help)"
+      "Bash(python3 track2/notebooks/rtdetr_infer.py --help)",
+      "Bash(python3 -m py_compile track2/scripts/rtdetr_lib.py)",
+      "Bash(python3 -c \"import sys; sys.path.insert\\(0,'track2/scripts'\\); import rtdetr_lib as L; print\\('local SRC ->', L.find_competition_src\\('data'\\)\\)\")"
     ],
     "additionalDirectories": [
       "/home/shimul/.claude/projects/-home-shimul-Documents-Hackathon-DUET-AI-Hackathon-duetAIHackathon-my-sub"
