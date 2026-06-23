@@ -1,0 +1,17 @@
+# Track #2 (RT-DETR-l). On Kaggle the notebook pip-installs ultralytics+albumentations;
+# the rest are preinstalled there. This file is for local/CPU reproduction of the
+# data audit, fold split and submission tooling.
+
+# --- GPU train/infer (Kaggle) ---
+ultralytics>=8.2.0      # provides RTDETR
+albumentations          # enables cheap blur/CLAHE weather aug (CCTV07 is foggy)
+torch                   # comes with the Kaggle GPU image
+
+# --- local CPU tooling (audit / build_dataset / submission_utils) ---
+pandas
+numpy
+pillow
+scikit-learn
+matplotlib
+pyyaml
+tqdm

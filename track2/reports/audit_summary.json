@@ -1,0 +1,46 @@
+{
+  "rows": 10475,
+  "images": 810,
+  "center_oob": 0,
+  "nonpos_wh": 0,
+  "zero_area": 0,
+  "border_overflow_rows": 0,
+  "exact_dup": 0,
+  "near_dup_pairs": 0,
+  "tiny_lt0.0005": 120,
+  "huge_gt0.25": 0,
+  "img_size_by_cam": {
+    "CCTV01": [
+      1280,
+      720
+    ],
+    "CCTV02": [
+      1280,
+      720
+    ],
+    "CCTV07": [
+      1280,
+      720
+    ],
+    "CCTV10": [
+      1280,
+      720
+    ]
+  },
+  "class_instances": {
+    "Rickshaw": 1594,
+    "Motorcycle": 993,
+    "Tempu": 2032,
+    "Sedan Car": 2480,
+    "Pickup": 270,
+    "Microbus": 455,
+    "Mini Bus": 164,
+    "Mini Truck": 127,
+    "Agro Use": 83,
+    "Medium Truck": 265,
+    "Large Bus": 1401,
+    "Heavy Truck": 239,
+    "Trailer": 372
+  },
+  "background_images": 0
+}

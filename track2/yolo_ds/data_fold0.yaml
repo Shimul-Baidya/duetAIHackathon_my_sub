@@ -1,0 +1,5 @@
+path: /home/shimul/Documents/Hackathon/DUET_AI_Hackathon/duetAIHackathon_my_sub/track2/yolo_ds
+train: folds/fold0_train.txt
+val: folds/fold0_val.txt
+nc: 13
+names: ['Rickshaw', 'Motorcycle', 'Tempu', 'Sedan Car', 'Pickup', 'Microbus', 'Mini Bus', 'Mini Truck', 'Agro Use', 'Medium Truck', 'Large Bus', 'Heavy Truck', 'Trailer']

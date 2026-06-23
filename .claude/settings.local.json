@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat)",
+      "Bash(python3 /tmp/claude-1000/test_wbf.py)",
+      "Bash(python3 -)",
+      "Bash(python3 track2/scripts/ensemble_tracks.py --src data --inputs track2/out/_t1.csv:1.2 track2/out/caches/rtdetr_l_WBF.json:1.0 --out track2/out/final_submission.csv)",
+      "Bash(python3 -m py_compile track2/notebooks/rtdetr_train.py track2/notebooks/rtdetr_infer.py track2/scripts/ensemble_tracks.py track2/scripts/submission_utils.py track2/scripts/build_dataset.py)",
+      "Bash(python3 track2/scripts/visualize.py)",
+      "Bash(mkdir -p /home/shimul/.claude/projects/-home-shimul-Documents-Hackathon-DUET-AI-Hackathon-duetAIHackathon-my-sub/memory/ && echo created)",
+      "Bash(python3 -m py_compile track2/scripts/rtdetr_lib.py track2/scripts/submission_utils.py track2/scripts/ensemble_tracks.py track2/scripts/build_dataset.py track2/notebooks/rtdetr_train.py track2/notebooks/rtdetr_infer.py)",
+      "Bash(python3 track2/notebooks/rtdetr_train.py --help)",
+      "Bash(python3 track2/notebooks/rtdetr_infer.py --help)"
+    ],
+    "additionalDirectories": [
+      "/home/shimul/.claude/projects/-home-shimul-Documents-Hackathon-DUET-AI-Hackathon-duetAIHackathon-my-sub"
+    ]
+  }
+}
