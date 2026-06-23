@@ -44,7 +44,7 @@ python track2/scripts/ensemble_tracks.py --src $SRC \
 | optimizer | AdamW, lr0 1e-4, lrf 0.1, **cosine**, warmup 5, wd 1e-4 |
 | batch | 4 (T4×2 @1280, 2/GPU) · 8 (@1024). OOM in smoke test → drop imgsz to 1024 or batch to 2. |
 | amp | on |
-| **augmentation (different on purpose)** | mosaic 0.5, mixup 0.15, copy_paste 0.3, hsv (.015/.5/.4), scale 0.5, translate 0.1, fliplr 0.5. **No** flipud/rotate/perspective — CCTV geometry is fixed. |
+| **augmentation (RT-DETR native)** | **No mosaic/mixup/copy_paste** — ultralytics emits 2×-size mosaic images that crash RT-DETR's collate, and RT-DETR is designed without them. Single-image augs: hsv (.015/.7/.4), scale 0.5, translate 0.1, fliplr 0.5, + Albumentations blur/CLAHE. No flipud/rotate/perspective (CCTV geometry is fixed). Still differs from Track#1's mosaic-heavy YOLO → diversity preserved. |
 | weather/noise | `pip install albumentations` → Ultralytics auto-adds Blur/MedianBlur/CLAHE/ToGray at low p (CCTV07 is foggy — this helps cheaply). |
 
 **Why 3 folds, fold-0 first:** train fold 0 alone → make a 1-fold insurance submission early,

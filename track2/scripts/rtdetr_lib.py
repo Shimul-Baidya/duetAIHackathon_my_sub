@@ -94,8 +94,12 @@ def train_one(data_yaml, runs, name, model="rtdetr-l.pt", imgsz=1024, batch=8,
         plots=(not smoke), val=True,
         optimizer="AdamW", lr0=1e-4, lrf=0.1, cos_lr=True, warmup_epochs=(0 if smoke else 5),
         weight_decay=1e-4,
-        mosaic=0.5, close_mosaic=(0 if smoke else 10), mixup=0.15, copy_paste=0.3,
-        hsv_h=0.015, hsv_s=0.5, hsv_v=0.4, scale=0.5, translate=0.1, fliplr=0.5,
+        # RT-DETR is unstable with mosaic in ultralytics: mosaic emits 2x-size (2560) images
+        # that aren't cropped back to imgsz in the RT-DETR pipeline -> collate stack crash.
+        # RT-DETR was designed WITHOUT mosaic; use single-image augs (still differs from
+        # Track#1's mosaic-heavy YOLO -> ensemble diversity preserved).
+        mosaic=0.0, mixup=0.0, copy_paste=0.0, close_mosaic=0,
+        hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, scale=0.5, translate=0.1, fliplr=0.5,
         flipud=0.0, degrees=0.0, perspective=0.0,
     )
     best=f"{runs}/{name}/weights/best.pt"
